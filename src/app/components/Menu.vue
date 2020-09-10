@@ -1,16 +1,59 @@
 <template>
-  <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-    <a-menu-item key="1">
-      <a-icon type="upload" />
-      <span>上傳腳本</span>
-    </a-menu-item>
-    <a-menu-item key="2">
-      <a-icon type="unordered-list" />
-      <span>列表</span>
-    </a-menu-item>
-    <a-menu-item key="3">
-      <a-icon type="setting" />
-      <span>設置</span>
-    </a-menu-item>
-  </a-menu>
+  <a-layout-sider v-model="isCollapsed" :trigger="null" collapsible>
+    <div id="logo">
+      <span class="logo-text">{{ isCollapsed ? '...' : '腳本管理' }}</span>
+      <a-button
+        class="menu-folder"
+        :icon="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        type="link"
+        @click="switchCollapsed"
+      />
+    </div>
+    <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
+      <a-menu-item key="1">
+        <a-icon type="upload" />
+        <span>上傳腳本</span>
+      </a-menu-item>
+      <a-menu-item key="2">
+        <a-icon type="unordered-list" />
+        <span>列表</span>
+      </a-menu-item>
+      <a-menu-item key="3">
+        <a-icon type="setting" />
+        <span>設置</span>
+      </a-menu-item>
+    </a-menu>
+  </a-layout-sider>
 </template>
+
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component({})
+  export default class extends Vue {
+    get isCollapsed(): boolean {
+      return this.$store.state.menuModule.isCollapsed;
+    }
+
+    private switchCollapsed(): void {
+      this.$store.commit('menuModule/setCollapsed', ! this.isCollapsed);
+    }
+  }
+</script>
+
+<style scoped>
+  #logo {
+    height: 32px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-text {
+    color: white;
+  }
+
+  .menu-folder {
+    margin-left: auto;
+  }
+</style>

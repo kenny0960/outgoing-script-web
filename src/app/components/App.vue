@@ -1,9 +1,6 @@
 <template>
   <a-layout id="app">
-    <a-layout-sider v-model="isCollapsed" :trigger="null" collapsible>
-      <Logo />
-      <Menu />
-    </a-layout-sider>
+    <Menu />
     <a-layout>
       <a-layout-content id="content">
         HELLO WORLD
@@ -17,20 +14,14 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import Logo from '@/app/components/Logo.vue';
   import Menu from '@/app/components/Menu.vue';
 
   @Component({
     components: {
-      Logo,
       Menu
     }
   })
-  export default class extends Vue {
-    get isCollapsed(): boolean {
-      return this.$store.state.menuModule.isCollapsed;
-    }
-  }
+  export default class extends Vue {}
 </script>
 
 <style scoped>
