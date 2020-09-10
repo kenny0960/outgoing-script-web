@@ -1,6 +1,6 @@
 <template>
   <a-layout id="app">
-    <a-layout-sider>
+    <a-layout-sider v-model="isCollapsed" :trigger="null" collapsible>
       <Logo />
       <Menu />
     </a-layout-sider>
@@ -26,7 +26,11 @@
       Menu
     }
   })
-  export default class extends Vue {}
+  export default class extends Vue {
+    get isCollapsed(): boolean {
+      return this.$store.state.menuModule.isCollapsed;
+    }
+  }
 </script>
 
 <style scoped>

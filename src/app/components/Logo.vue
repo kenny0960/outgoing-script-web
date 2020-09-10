@@ -1,9 +1,29 @@
 <template>
   <div id="logo">
-    <span class="logo-text">腳本管理</span>
-    <a-button class="menu-folder" icon="menu-unfold" type="link" />
+    <span class="logo-text">{{ isCollapsed ? '' : '腳本管理' }}</span>
+    <a-button
+      class="menu-folder"
+      :icon="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+      type="link"
+      @click="switchCollapsed"
+    />
   </div>
 </template>
+
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component({})
+  export default class extends Vue {
+    get isCollapsed(): boolean {
+      return this.$store.state.menuModule.isCollapsed;
+    }
+
+    private switchCollapsed(): void {
+      this.$store.commit('menuModule/setCollapsed', ! this.isCollapsed);
+    }
+  }
+</script>
 
 <style scoped>
   #logo {
