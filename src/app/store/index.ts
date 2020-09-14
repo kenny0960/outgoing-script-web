@@ -7,10 +7,10 @@ import settingsModule from '@/settings/store/module';
 Vue.use(Vuex);
 
 const store: StoreOptions<RootState> = {
-  modules: {
-    menuModule,
-    settingsModule
-  }
+    modules: {
+        menuModule,
+        settingsModule,
+    },
 };
 
 export default new Vuex.Store<RootState>(store);

@@ -12,7 +12,7 @@ const menuModule: Module<MenuState, RootState> = {
     state,
     getters,
     actions,
-    mutations
+    mutations,
 };
 
 export default menuModule;

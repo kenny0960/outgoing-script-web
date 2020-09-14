@@ -1,16 +1,16 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-import App from './app/components/App.vue'
-import router from './app/router'
-import store from './app/store'
+import App from './app/components/App.vue';
+import router from './app/router';
+import store from './app/store';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(Antd);
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+    router,
+    store,
+    render: (h) => h(App),
+}).$mount('#app');

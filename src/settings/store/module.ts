@@ -12,7 +12,7 @@ const settingsModule: Module<SettingsState, RootState> = {
     state,
     getters,
     actions,
-    mutations
+    mutations,
 };
 
 export default settingsModule;
