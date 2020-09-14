@@ -18,7 +18,7 @@
         <a-icon type="unordered-list" />
         <span>列表</span>
       </a-menu-item>
-      <a-menu-item key="3">
+      <a-menu-item key="settings">
         <a-icon type="setting" />
         <span>設置</span>
       </a-menu-item>
@@ -39,6 +39,7 @@
       this.$store.commit('menuModule/setCollapsed', ! this.isCollapsed);
     }
 
+    // eslint-disable-next-line
     private handleMenuClick({ key, item }: any): void {
       // 避免路由相同路徑
       if (item.$el.classList.contains('ant-menu-item-selected')) {
