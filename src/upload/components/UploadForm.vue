@@ -1,7 +1,10 @@
 <template>
   <a-form-model :model="form" :label-col="{ span: 2 }" :wrapper-col="{ span: 20 }">
     <a-form-model-item label="腳本">
-      <a-input v-model="form.script" type="textarea" />
+      <a-input v-model="form.script" type="textarea" @change="handleScriptChange" />
+      <a-tag color="blue" v-if="form.bank !== undefined">
+        {{ form.bank.name }}
+      </a-tag>
     </a-form-model-item>
     <a-form-model-item label="備註">
       <a-input-group compact>
@@ -48,10 +51,12 @@
   import Web from '@/settings/interfaces/web'
   import UploadForm from '@/upload/interfaces/UploadForm'
   import { Component, Vue } from 'vue-property-decorator';
+  import Bank from '@/settings/interfaces/bank';
 
   @Component({})
   export default class extends Vue {
     private form: UploadForm = {
+      bank: undefined,
       script: '',
       notePrefix: ESB_WEB.name,
       notePostfix: getCurrentDatetimeString(),
@@ -61,6 +66,23 @@
 
     get webs(): Web[] {
       return this.$store.state.settingsModule.webs;
+    }
+
+    get banks(): Bank[] {
+      return this.$store.state.settingsModule.banks;
+    }
+
+    private handleScriptChange(event: InputEvent): void {
+      const script: string = (event.target as HTMLTextAreaElement).value;
+
+      for (const bank of this.banks) {
+        if (script.indexOf(bank.name) !== -1) {
+          this.form.bank = bank;
+          return;
+        }
+      }
+
+      this.form.bank = undefined;
     }
 
     private submit(): void {
