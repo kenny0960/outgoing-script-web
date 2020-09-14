@@ -3,7 +3,7 @@
     <Menu />
     <a-layout>
       <a-layout-content id="content">
-        HELLO WORLD
+        <router-view />
       </a-layout-content>
       <a-layout-footer style="text-align: center">
         <a-icon type="copyright" /> 2020 Created by KENNY

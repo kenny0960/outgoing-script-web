@@ -9,8 +9,8 @@
         @click="switchCollapsed"
       />
     </div>
-    <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-      <a-menu-item key="1">
+    <a-menu @click="handleMenuClick" theme="dark" mode="inline" :default-selected-keys="['upload']">
+      <a-menu-item key="upload">
         <a-icon type="upload" />
         <span>上傳腳本</span>
       </a-menu-item>
@@ -37,6 +37,14 @@
 
     private switchCollapsed(): void {
       this.$store.commit('menuModule/setCollapsed', ! this.isCollapsed);
+    }
+
+    private handleMenuClick({ key, item }: any): void {
+      // 避免路由相同路徑
+      if (item.$el.classList.contains('ant-menu-item-selected')) {
+        return;
+      }
+      this.$router.push(key);
     }
   }
 </script>

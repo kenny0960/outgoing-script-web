@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import UploadForm from '@/upload/components/UploadForm.vue'
 
 Vue.use(VueRouter)
 
-  const routes: Array<RouteConfig> = [
+const routes: Array<RouteConfig> = [
   {
-    path: '/',
-    name: 'Home'
+    path: '*',
+    redirect: '/upload'
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: UploadForm
   },
   {
     path: '/about',
