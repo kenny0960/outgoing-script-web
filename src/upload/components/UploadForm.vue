@@ -1,5 +1,12 @@
 <template>
     <a-form-model :model="form" :label-col="{ span: 2 }" :wrapper-col="{ span: 20 }">
+        <a-form-model-item label="網站">
+            <a-checkbox-group v-model="form.webs">
+                <a-checkbox v-for="web in webs" :key="web.name" :value="web">
+                    {{ web.name }}
+                </a-checkbox>
+            </a-checkbox-group>
+        </a-form-model-item>
         <a-form-model-item label="腳本">
             <a-input v-model="form.script" type="textarea" @change="handleScriptChange" />
             <a-tag color="blue" v-if="form.bank !== undefined">
@@ -8,21 +15,13 @@
         </a-form-model-item>
         <a-form-model-item label="備註">
             <a-input-group compact>
-                <a-select v-model="form.notePrefix"
-                    >>
+                <a-select v-model="form.notePrefix">
                     <a-select-option v-for="web in webs" :key="web.name" :value="web.name">
                         {{ web.name }}
                     </a-select-option>
                 </a-select>
                 <a-input v-model="form.notePostfix" class="not-postfix" />
             </a-input-group>
-        </a-form-model-item>
-        <a-form-model-item label="網站">
-            <a-checkbox-group v-model="form.webs">
-                <a-checkbox v-for="web in webs" :key="web.name" :value="web">
-                    {{ web.name }}
-                </a-checkbox>
-            </a-checkbox-group>
         </a-form-model-item>
         <a-form-model-item label="穩定版本">
             <a-switch v-model="form.isStable" />
