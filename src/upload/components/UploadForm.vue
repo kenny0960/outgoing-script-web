@@ -46,11 +46,12 @@
   import { getCurrentDatetimeString } from '@/common/classes/datetime'
   import { ESB_WEB } from '@/settings/consts/webs'
   import Web from '@/settings/interfaces/web'
+  import UploadForm from '@/upload/interfaces/UploadForm'
   import { Component, Vue } from 'vue-property-decorator';
 
   @Component({})
   export default class extends Vue {
-    private form: object = {
+    private form: UploadForm = {
       script: '',
       notePrefix: ESB_WEB.name,
       notePostfix: getCurrentDatetimeString(),
@@ -62,7 +63,7 @@
       return this.$store.state.settingsModule.webs;
     }
 
-    private submit() {
+    private submit(): void {
       // TODO 實作送出功能
       console.log('submit!', this.form);
     }
