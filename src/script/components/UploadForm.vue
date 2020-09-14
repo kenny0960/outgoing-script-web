@@ -37,7 +37,7 @@
 import { getCurrentDatetimeString } from '@/common/classes/datetime';
 import { ESB_WEB } from '@/settings/consts/webs';
 import Web from '@/settings/interfaces/web';
-import UploadForm from '@/upload/interfaces/UploadForm';
+import UploadForm from '@/script/interfaces/UploadForm';
 import { Component, Vue } from 'vue-property-decorator';
 import Bank from '@/settings/interfaces/bank';
 

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import UploadForm from '@/upload/components/UploadForm.vue';
+import UploadForm from '@/script/components/UploadForm.vue';
 import SettingList from '@/settings/components/SettingList.vue';
 
 Vue.use(VueRouter);
