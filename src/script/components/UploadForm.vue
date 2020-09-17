@@ -38,6 +38,7 @@ import Web from '@/settings/interfaces/web';
 import UploadForm from '@/script/interfaces/UploadForm';
 import { Component, Vue } from 'vue-property-decorator';
 import Bank from '@/settings/interfaces/bank';
+import { AxiosResponse } from 'axios';
 
 @Component({})
 export default class extends Vue {
@@ -68,8 +69,20 @@ export default class extends Vue {
     }
 
     private submit(): void {
-        // TODO 實作送出功能
-        console.log('submit!', this.uploadForm);
+        for (const web of this.uploadForm.webs) {
+            this.$store
+                .dispatch('scriptModule/createScript', web)
+                .then((response: AxiosResponse): void => {
+                    if (response.status === 201) {
+                        this.$message.success(`上傳「${web.name} - ${this.uploadForm.bank?.name}」腳本成功`);
+                    }
+                })
+                .catch((error): void => {
+                    this.$message.error(
+                        `上傳「${web.name} - ${this.uploadForm.bank?.name}」腳本失敗：${error.message}`
+                    );
+                });
+        }
     }
 }
 </script>
