@@ -14,7 +14,7 @@
                 <a-icon type="upload" />
                 <span>上傳腳本</span>
             </a-menu-item>
-            <a-menu-item key="2">
+            <a-menu-item key="list">
                 <a-icon type="unordered-list" />
                 <span>列表</span>
             </a-menu-item>
