@@ -34,7 +34,7 @@
         </a-form-model-item>
         <a-form-model-item :wrapper-col="{ offset: 2 }">
             <a-button type="primary" @click="submit" :loading="isUploading"> 上傳 </a-button>
-            <a-button> 取消 </a-button>
+            <a-button @click="reset"> 重置 </a-button>
         </a-form-model-item>
     </a-form-model>
 </template>
@@ -105,6 +105,10 @@ export default class extends Vue {
                 }
             }
         );
+    }
+
+    private reset(): void {
+        (this.$refs.uploadForm as FormModel).resetFields();
     }
 }
 </script>
