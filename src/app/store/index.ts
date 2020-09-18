@@ -5,6 +5,7 @@ import menuModule from '@/menu/store/module';
 import settingsModule from '@/settings/store/module';
 import uploadModule from '@/upload/store/module';
 import scriptModule from '@/script/store/module';
+import tabModule from '@/tab/store/module';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ const store: StoreOptions<RootState> = {
         settingsModule,
         uploadModule,
         scriptModule,
+        tabModule,
     },
 };
 
