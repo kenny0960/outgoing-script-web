@@ -34,7 +34,6 @@ import Web from '@/settings/interfaces/web';
 import { UploadState } from '@/upload/store/state';
 import { Component, Vue } from 'vue-property-decorator';
 import Bank from '@/settings/interfaces/bank';
-import { AxiosResponse } from 'axios';
 
 @Component({})
 export default class extends Vue {
@@ -64,43 +63,13 @@ export default class extends Vue {
         this.$store.commit('uploadModule/setBank', uploadFormBank);
     }
 
-    private submit(): void {
+    private async submit(): Promise<void> {
         for (const web of this.uploadState.webs) {
-            this.$store
-                .dispatch('uploadModule/createScript', web)
-                .then((response: AxiosResponse): void => {
-                    if (response.status === 201) {
-                        this.$message.success(`上傳「${web.name} - ${this.uploadState.bank?.name}」腳本成功`);
-                    }
-                    if (this.uploadState.isStable) {
-                        const script: Script = {
-                            revision: response.data.revision,
-                            entryUrl: response.data.entry_url,
-                            content: response.data.script_content,
-                            isStable: response.data.stabled,
-                            note: response.data.note,
-                        };
-                        this.$store
-                            .dispatch('uploadModule/setScriptStabled', { web, script })
-                            .then((response: AxiosResponse): void => {
-                                if (response.status === 204) {
-                                    this.$message.success(
-                                        `設定「${web.name} - ${this.uploadState.bank?.name}」穩定版本成功`
-                                    );
-                                }
-                            })
-                            .catch((error): void => {
-                                this.$message.error(
-                                    `設定「${web.name} - ${this.uploadState.bank?.name}」穩定版本失敗：${error.message}`
-                                );
-                            });
-                    }
-                })
-                .catch((error): void => {
-                    this.$message.error(
-                        `上傳「${web.name} - ${this.uploadState.bank?.name}」腳本失敗：${error.message}`
-                    );
-                });
+            const script: Script = await this.$store.dispatch('uploadModule/createScript', web);
+
+            if (this.uploadState.isStable) {
+                await this.$store.dispatch('uploadModule/setScriptStabled', { web, script });
+            }
         }
     }
 }
