@@ -22,6 +22,16 @@ const actions: ActionTree<UploadState, RootState> = {
             }),
         });
     },
+
+    setScriptStabled({ state }, { web, script }): AxiosPromise {
+        return axios({
+            method: 'PUT',
+            url: `${web.uri}/api/v1/banks/${state.bank?.swiftBankCode}/scripts/${script.revision}/stable`,
+            headers: {
+                Authorization: web.token,
+            },
+        });
+    },
 };
 
 export default actions;
