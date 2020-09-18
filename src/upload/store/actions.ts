@@ -17,7 +17,7 @@ const actions: ActionTree<UploadState, RootState> = {
                 /* eslint-disable @typescript-eslint/camelcase */
                 entry_url: state.bank?.entryUrl,
                 script_content: state.script,
-                note: `${state.notePrefix}-V${state.notePostfix}`,
+                note: `${web.name}-V${state.note}`,
                 /* eslint-enable @typescript-eslint/camelcase */
             }),
         });

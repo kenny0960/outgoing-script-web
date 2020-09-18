@@ -15,12 +15,7 @@
         </a-form-model-item>
         <a-form-model-item label="備註">
             <a-input-group compact>
-                <a-select v-model="uploadState.notePrefix">
-                    <a-select-option v-for="web in webs" :key="web.name" :value="web.name">
-                        {{ web.name }}
-                    </a-select-option>
-                </a-select>
-                <a-input v-model="uploadState.notePostfix" class="not-postfix" />
+                <a-input v-model="uploadState.note" class="note" />
             </a-input-group>
         </a-form-model-item>
         <a-form-model-item label="穩定版本">
@@ -88,7 +83,7 @@ export default class extends Vue {
 </script>
 
 <style scoped>
-.not-postfix {
+.note {
     max-width: 100px;
 }
 

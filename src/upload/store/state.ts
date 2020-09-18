@@ -6,8 +6,7 @@ import { DEVELOP_WEB } from '@/settings/consts/webs';
 export interface UploadState {
     bank: undefined | Bank;
     script: string;
-    notePrefix: string;
-    notePostfix: string;
+    note: string;
     webs: Web[];
     isStable: boolean;
 }
@@ -16,8 +15,7 @@ const state = (): UploadState => {
     return {
         bank: undefined,
         script: '',
-        notePrefix: DEVELOP_WEB.name,
-        notePostfix: getCurrentDatetimeString(),
+        note: getCurrentDatetimeString(),
         webs: [DEVELOP_WEB],
         isStable: true,
     };
