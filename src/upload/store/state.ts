@@ -1,21 +1,25 @@
 import { getCurrentDatetimeString } from '@/common/classes/datetime';
-import UploadForm from '@/upload/interfaces/UploadForm';
-import { ESB_WEB } from '@/settings/consts/webs';
+import Bank from '@/settings/interfaces/bank';
+import Web from '@/settings/interfaces/web';
+import { DEVELOP_WEB } from '@/settings/consts/webs';
 
 export interface UploadState {
-    uploadForm: UploadForm;
+    bank: undefined | Bank;
+    script: string;
+    notePrefix: string;
+    notePostfix: string;
+    webs: Web[];
+    isStable: boolean;
 }
 
 const state = (): UploadState => {
     return {
-        uploadForm: {
-            bank: undefined,
-            script: '',
-            notePrefix: ESB_WEB.name,
-            notePostfix: getCurrentDatetimeString(),
-            webs: [ESB_WEB],
-            isStable: true,
-        },
+        bank: undefined,
+        script: '',
+        notePrefix: DEVELOP_WEB.name,
+        notePostfix: getCurrentDatetimeString(),
+        webs: [DEVELOP_WEB],
+        isStable: true,
     };
 };
 

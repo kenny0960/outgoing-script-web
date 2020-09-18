@@ -8,16 +8,16 @@ const actions: ActionTree<UploadState, RootState> = {
     createScript({ state }, web: Web): AxiosPromise {
         return axios({
             method: 'POST',
-            url: `${web.uri}/api/v1/banks/${state.uploadForm.bank?.swiftBankCode}/scripts`,
+            url: `${web.uri}/api/v1/banks/${state.bank?.swiftBankCode}/scripts`,
             headers: {
                 Authorization: web.token,
                 'Content-type': 'application/json',
             },
             data: JSON.stringify({
                 /* eslint-disable @typescript-eslint/camelcase */
-                entry_url: state.uploadForm.bank?.entryUrl,
-                script_content: state.uploadForm.script,
-                note: `${state.uploadForm.notePrefix}-V${state.uploadForm.notePostfix}`,
+                entry_url: state.bank?.entryUrl,
+                script_content: state.script,
+                note: `${state.notePrefix}-V${state.notePostfix}`,
                 /* eslint-enable @typescript-eslint/camelcase */
             }),
         });
