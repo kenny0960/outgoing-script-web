@@ -1,12 +1,12 @@
 import { getCurrentDatetimeString } from '@/common/classes/datetime';
-import UploadForm from '@/script/interfaces/UploadForm';
+import UploadForm from '@/upload/interfaces/UploadForm';
 import { ESB_WEB } from '@/settings/consts/webs';
 
-export interface ScriptState {
+export interface UploadState {
     uploadForm: UploadForm;
 }
 
-const state = (): ScriptState => {
+const state = (): UploadState => {
     return {
         uploadForm: {
             bank: undefined,

@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import Web from '@/settings/interfaces/web';
-import UploadForm from '@/script/interfaces/UploadForm';
+import UploadForm from '@/upload/interfaces/UploadForm';
 import { Component, Vue } from 'vue-property-decorator';
 import Bank from '@/settings/interfaces/bank';
 import { AxiosResponse } from 'axios';
@@ -43,7 +43,7 @@ import { AxiosResponse } from 'axios';
 @Component({})
 export default class extends Vue {
     get uploadForm(): UploadForm {
-        return this.$store.state.scriptModule.uploadForm;
+        return this.$store.state.uploadModule.uploadForm;
     }
 
     get webs(): Web[] {
@@ -65,13 +65,13 @@ export default class extends Vue {
             }
         }
 
-        this.$store.commit('scriptModule/setUploadFormBank', uploadFormBank);
+        this.$store.commit('uploadModule/setUploadFormBank', uploadFormBank);
     }
 
     private submit(): void {
         for (const web of this.uploadForm.webs) {
             this.$store
-                .dispatch('scriptModule/createScript', web)
+                .dispatch('uploadModule/createScript', web)
                 .then((response: AxiosResponse): void => {
                     if (response.status === 201) {
                         this.$message.success(`上傳「${web.name} - ${this.uploadForm.bank?.name}」腳本成功`);

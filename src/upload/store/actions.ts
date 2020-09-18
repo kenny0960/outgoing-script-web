@@ -1,10 +1,10 @@
 import Web from '@/settings/interfaces/web';
 import { ActionTree } from 'vuex';
 import RootState from '@/app/store/state';
-import { ScriptState } from '@/script/store/state';
+import { UploadState } from '@/upload/store/state';
 import axios, { AxiosPromise } from 'axios';
 
-const actions: ActionTree<ScriptState, RootState> = {
+const actions: ActionTree<UploadState, RootState> = {
     createScript({ state }, web: Web): AxiosPromise {
         return axios({
             method: 'POST',
