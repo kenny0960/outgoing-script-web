@@ -3,7 +3,8 @@
         <Menu />
         <a-layout>
             <a-layout-content id="content">
-                <router-view />
+                <a-skeleton v-if="isLoadingData" active :paragraph="{ rows: 5 }" />
+                <router-view v-else />
             </a-layout-content>
             <a-layout-footer style="text-align: center">
                 <a-icon type="copyright" /> 2020 Created by KENNY
@@ -21,7 +22,23 @@ import Menu from '@/menu/components/Menu.vue';
         Menu,
     },
 })
-export default class extends Vue {}
+export default class extends Vue {
+    public mounted(): void {
+        this.fetchScripts();
+    }
+
+    get isScriptsLoading(): boolean {
+        return this.$store.getters['scriptModule/isLoading'];
+    }
+
+    get isLoadingData(): boolean {
+        return this.isScriptsLoading;
+    }
+
+    public fetchScripts(): void {
+        this.$store.dispatch('scriptModule/fetchScripts');
+    }
+}
 </script>
 
 <style scoped>
