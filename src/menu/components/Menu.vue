@@ -9,7 +9,7 @@
                 @click="switchCollapsed"
             />
         </div>
-        <a-menu @click="handleMenuClick" theme="dark" mode="inline" :default-selected-keys="['upload']">
+        <a-menu @click="handleMenuClick" theme="dark" mode="inline" :default-selected-keys="[currentPath]">
             <a-menu-item key="upload">
                 <a-icon type="upload" />
                 <span>上傳腳本</span>
@@ -33,6 +33,10 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class extends Vue {
     get isCollapsed(): boolean {
         return this.$store.state.menuModule.isCollapsed;
+    }
+
+    get currentPath(): string {
+        return this.$route.path.slice(1);
     }
 
     private switchCollapsed(): void {
