@@ -1,8 +1,8 @@
+import Main from '@/script/components/Main.vue';
+import SettingList from '@/settings/components/SettingList.vue';
+import UploadForm from '@/upload/components/UploadForm.vue';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import UploadForm from '@/upload/components/UploadForm.vue';
-import List from '@/script/components/List.vue';
-import SettingList from '@/settings/components/SettingList.vue';
 
 Vue.use(VueRouter);
 
@@ -19,7 +19,7 @@ const routes: Array<RouteConfig> = [
     {
         path: '/list',
         name: 'List',
-        component: List,
+        component: Main,
     },
     {
         path: '/settings',
