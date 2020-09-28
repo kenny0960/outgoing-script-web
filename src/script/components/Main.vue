@@ -1,11 +1,19 @@
 <template>
-    <a-skeleton v-if="isLoading" active :paragraph="{ rows: 5 }" />
+    <fragment>
+        <Tab />
+        <a-skeleton v-if="isLoading" active :paragraph="{ rows: 5 }" />
+    </fragment>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Tab from '@/tab/components/Tab.vue';
 
-@Component({})
+@Component({
+    components: {
+        Tab,
+    },
+})
 export default class extends Vue {
     public mounted(): void {
         this.$store.dispatch('scriptModule/fetchScripts');
