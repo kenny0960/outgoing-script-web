@@ -1,5 +1,11 @@
 import Web from '@/settings/interfaces/web';
 
+export const DEFAULT_WEB: Web = {
+    name: '',
+    uri: '',
+    token: '',
+};
+
 export const LOCAL_WEB: Web = {
     name: 'LOCAL',
     uri: 'http://172.16.155.158:8080',

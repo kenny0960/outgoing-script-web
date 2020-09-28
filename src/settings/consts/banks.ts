@@ -1,5 +1,11 @@
 import Bank from '@/settings/interfaces/bank';
 
+export const DEFAULT_BANK: Bank = {
+    swiftBankCode: '',
+    name: '',
+    entryUrl: '',
+};
+
 export const ABOC: Bank = {
     swiftBankCode: 'ABOC',
     name: 'AgriculturalBank',
