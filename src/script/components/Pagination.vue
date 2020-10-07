@@ -1,10 +1,13 @@
 <template>
     <a-pagination
         class="pagination"
+        show-size-changer
+        :pageSizeOptions="[4, 8, 12, 16]"
         :pageSize="pagination.pageSize"
         :current="pagination.current"
         :total="pagination.total"
         @change="handleCurrentChange"
+        @showSizeChange="handlePageSizeChange"
     />
 </template>
 
@@ -22,6 +25,16 @@ export default class extends Vue {
         this.$store.commit('scriptModule/setPagination', {
             ...this.pagination,
             current: current,
+        });
+        this.$store.commit('scriptModule/setScripts', undefined);
+        this.$store.dispatch('scriptModule/fetchScripts');
+    }
+
+    private handlePageSizeChange(current: number, pageSize: number) {
+        this.$store.commit('scriptModule/setPagination', {
+            ...this.pagination,
+            current: current,
+            pageSize: pageSize,
         });
         this.$store.commit('scriptModule/setScripts', undefined);
         this.$store.dispatch('scriptModule/fetchScripts');
