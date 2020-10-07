@@ -15,6 +15,7 @@
                         :checked="script.isStabled"
                         :disabled="script.isStabled"
                         checkedChildren="stable"
+                        @change="() => handleStableChange(script.revision)"
                     />
                 </slot>
                 <a-descriptions :column="1" class="script-detail">
@@ -73,6 +74,11 @@ export default class extends Vue {
 
     private handleCopyError(): void {
         this.$message.error(`複製腳本失敗`);
+    }
+
+    private async handleStableChange(revision: number): Promise<void> {
+        await this.$store.dispatch('scriptModule/setScriptStabled', revision);
+        await this.$store.dispatch('scriptModule/fetchScripts');
     }
 }
 </script>

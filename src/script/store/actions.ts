@@ -47,6 +47,28 @@ const actions: ActionTree<ScriptState, RootState> = {
             );
         }
     },
+
+    async setScriptStabled({ rootState }, revision: number): Promise<void> {
+        try {
+            const response: AxiosResponse = await axios({
+                method: 'PUT',
+                url: `${rootState.tabModule.selectedWeb.uri}/api/v1/banks/${rootState.tabModule.selectedBank.swiftBankCode}/scripts/${revision}/stable`,
+                headers: {
+                    Authorization: rootState.tabModule.selectedWeb.token,
+                },
+            });
+
+            if (response.status === 204) {
+                message.success(
+                    `設定「${rootState.tabModule.selectedWeb.name} - ${rootState.tabModule.selectedBank.name}」穩定版本成功`
+                );
+            }
+        } catch (error) {
+            message.error(
+                `設定「${rootState.tabModule.selectedWeb.name} - ${rootState.tabModule.selectedBank.name}」穩定版本失敗：${error.message}`
+            );
+        }
+    },
 };
 
 export default actions;
