@@ -2,7 +2,10 @@
     <fragment>
         <Tab />
         <a-skeleton v-if="isLoading" active :paragraph="{ rows: 5 }" />
-        <List v-else />
+        <fragment v-else>
+            <List />
+            <Pagination />
+        </fragment>
     </fragment>
 </template>
 
@@ -10,11 +13,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Tab from '@/tab/components/Tab.vue';
 import List from '@/script/components/List.vue';
+import Pagination from '@/script/components/Pagination.vue';
 
 @Component({
     components: {
         Tab,
         List,
+        Pagination,
     },
 })
 export default class extends Vue {
