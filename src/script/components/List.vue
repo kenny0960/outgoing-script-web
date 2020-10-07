@@ -18,25 +18,25 @@
                         @change="() => handleStableChange(script.revision)"
                     />
                 </slot>
-                <a-descriptions :column="1" class="script-detail">
-                    <a-descriptions-item label="檔案大小">
-                        {{ size(script) }} KB
-                        <a-tooltip>
-                            <template slot="title">複製腳本</template>
-                            <a-button
-                                type="link"
-                                icon="copy"
-                                v-clipboard:copy="decodedContent(script)"
-                                v-clipboard:success="handleCopySuccess"
-                                v-clipboard:error="handleCopyError"
-                            />
-                        </a-tooltip>
-                    </a-descriptions-item>
-                    <a-descriptions-item label="網銀入口">
+                <template slot="actions" class="ant-card-actions">
+                    <a-tooltip>
+                        <template slot="title">複製腳本</template>
+                        <a-icon
+                            type="copy"
+                            v-clipboard:copy="decodedContent(script)"
+                            v-clipboard:success="handleCopySuccess"
+                            v-clipboard:error="handleCopyError"
+                        />
+                    </a-tooltip>
+                    <a-tooltip>
+                        <template slot="title">網銀入口</template>
                         <a target="_blank" :href="script.entryUrl">
-                            <a-button type="link" icon="chrome" />
+                            <a-icon type="chrome" />
                         </a>
-                    </a-descriptions-item>
+                    </a-tooltip>
+                </template>
+                <a-descriptions :column="1" class="script-detail">
+                    <a-descriptions-item label="檔案大小"> {{ size(script) }} KB </a-descriptions-item>
                     <a-descriptions-item v-if="script.note">
                         <a-tag color="blue">{{ script.note }}</a-tag>
                     </a-descriptions-item>
