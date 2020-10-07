@@ -33,7 +33,7 @@ const actions: ActionTree<UploadState, RootState> = {
                 revision: response.data.revision,
                 entryUrl: response.data.entry_url,
                 content: response.data.script_content,
-                isStable: response.data.stabled,
+                isStabled: response.data.stabled,
                 note: response.data.note,
             };
 

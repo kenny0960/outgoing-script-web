@@ -3,7 +3,7 @@ interface Script {
     entryUrl: string;
     content: string;
     note: string;
-    isStable: boolean;
+    isStabled: boolean;
 }
 
 export default Script;

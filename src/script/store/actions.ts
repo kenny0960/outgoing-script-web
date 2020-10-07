@@ -31,7 +31,7 @@ const actions: ActionTree<ScriptState, RootState> = {
                     revision: script.revision,
                     entryUrl: script.entry_url,
                     content: script.script_content,
-                    isStable: script.stabled,
+                    isStabled: script.stabled,
                     note: script.note,
                 });
             }

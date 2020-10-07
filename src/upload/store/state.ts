@@ -8,7 +8,7 @@ export interface UploadState {
     script: string;
     note: string;
     webs: Web[];
-    isStable: boolean;
+    isStabled: boolean;
 }
 
 const state = (): UploadState => {
@@ -17,7 +17,7 @@ const state = (): UploadState => {
         script: '',
         note: getCurrentDatetimeString(),
         webs: [DEVELOP_WEB],
-        isStable: true,
+        isStabled: true,
     };
 };
 

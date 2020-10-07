@@ -12,8 +12,8 @@
                 <slot slot="extra">
                     <a-switch
                         size="small"
-                        :checked="script.isStable"
-                        :disabled="script.isStable"
+                        :checked="script.isStabled"
+                        :disabled="script.isStabled"
                         checkedChildren="stable"
                     />
                 </slot>

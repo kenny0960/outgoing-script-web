@@ -29,8 +29,8 @@
                 <a-input v-model="uploadState.note" class="note" :disabled="isUploading" />
             </a-input-group>
         </a-form-model-item>
-        <a-form-model-item label="穩定版本" prop="isStable">
-            <a-switch v-model="uploadState.isStable" :disabled="isUploading" />
+        <a-form-model-item label="穩定版本" prop="isStabled">
+            <a-switch v-model="uploadState.isStabled" :disabled="isUploading" />
         </a-form-model-item>
         <a-form-model-item :wrapper-col="{ offset: 2 }">
             <a-button type="primary" @click="submit" :loading="isUploading"> 上傳 </a-button>
@@ -97,7 +97,7 @@ export default class extends Vue {
                     for (const web of this.uploadState.webs) {
                         const script: Script = await this.$store.dispatch('uploadModule/createScript', web);
 
-                        if (this.uploadState.isStable) {
+                        if (this.uploadState.isStabled) {
                             await this.$store.dispatch('uploadModule/setScriptStabled', { web, script });
                         }
                     }
