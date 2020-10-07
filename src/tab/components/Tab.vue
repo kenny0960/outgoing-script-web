@@ -38,12 +38,14 @@ export default class extends Vue {
 
     private handleBankClick(swiftBankCode: string): void {
         this.$store.commit('tabModule/setSelectedBank', this.getBankBySwiftBankCode(swiftBankCode));
+        this.$store.commit('scriptModule/resetPagination');
         this.$store.commit('scriptModule/setScripts', undefined);
         this.$store.dispatch('scriptModule/fetchScripts');
     }
 
     private handleWebClick({ target }: Event): void {
         this.$store.commit('tabModule/setSelectedWeb', (target as HTMLInputElement).value);
+        this.$store.commit('scriptModule/resetPagination');
         this.$store.commit('scriptModule/setScripts', undefined);
         this.$store.dispatch('scriptModule/fetchScripts');
     }

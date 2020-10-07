@@ -1,3 +1,4 @@
+import defaultPagination from '@/script/instances/defaultPagination';
 import Pagination from '@/script/interfaces/Pagination';
 import Script from '@/script/interfaces/Script';
 import { MutationTree } from 'vuex';
@@ -10,6 +11,10 @@ const mutations: MutationTree<ScriptState> = {
 
     setPagination(state: ScriptState, pagination: Pagination): void {
         state.pagination = pagination;
+    },
+
+    resetPagination(state: ScriptState): void {
+        state.pagination = defaultPagination;
     },
 };
 
