@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import Script from '@/script/interfaces/Script';
+import Bank from '@/settings/interfaces/bank';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
@@ -56,7 +57,7 @@ export default class extends Vue {
         return this.$store.state.scriptModule.scripts;
     }
 
-    get verified(): Function {
+    get verified(): boolean {
         return this.$store.getters['scriptModule/verified'];
     }
 
@@ -66,6 +67,10 @@ export default class extends Vue {
 
     get decodedContent(): Function {
         return this.$store.getters['scriptModule/decodedContent'];
+    }
+
+    get selectedBank(): Bank {
+        return this.$store.state.tabModule.selectedBank;
     }
 
     private handleCopySuccess(): void {
@@ -79,6 +84,7 @@ export default class extends Vue {
     private async handleStableChange(revision: number): Promise<void> {
         await this.$store.dispatch('scriptModule/setScriptStabled', revision);
         await this.$store.dispatch('scriptModule/fetchScripts');
+        await this.$store.dispatch('stableScriptModule/fetchStableScript', this.selectedBank);
     }
 }
 </script>

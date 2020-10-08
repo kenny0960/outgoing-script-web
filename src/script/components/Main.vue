@@ -1,7 +1,7 @@
 <template>
     <fragment>
-        <Tab />
-        <a-skeleton v-if="isLoading" active :paragraph="{ rows: 5 }" />
+        <Tab v-if="isStableScriptsLoading === false" />
+        <a-skeleton v-if="isScriptsLoading" active :paragraph="{ rows: 5 }" />
         <fragment v-else>
             <List />
             <Pagination />
@@ -29,11 +29,18 @@ export default class extends Vue {
     }
 
     public mounted(): void {
+        for (const bank of this.$store.state.settingsModule.banks) {
+            this.$store.dispatch('stableScriptModule/fetchStableScript', bank);
+        }
         this.$store.dispatch('scriptModule/fetchScripts');
     }
 
-    get isLoading(): boolean {
+    get isScriptsLoading(): boolean {
         return this.$store.getters['scriptModule/isLoading'];
+    }
+
+    get isStableScriptsLoading(): boolean {
+        return this.$store.getters['stableScriptModule/isLoading'];
     }
 }
 </script>
