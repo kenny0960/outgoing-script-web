@@ -15,7 +15,7 @@
                         :checked="script.isStabled"
                         :disabled="script.isStabled"
                         checkedChildren="stable"
-                        @change="() => handleStableChange(script.revision)"
+                        @change="() => handleStableChange(script)"
                     />
                 </slot>
                 <template slot="actions" class="ant-card-actions">
@@ -81,10 +81,10 @@ export default class extends Vue {
         this.$message.error(`複製腳本失敗`);
     }
 
-    private async handleStableChange(revision: number): Promise<void> {
-        await this.$store.dispatch('scriptModule/setScriptStabled', revision);
+    private async handleStableChange(script: Script): Promise<void> {
+        await this.$store.dispatch('scriptModule/setScriptStabled', script.revision);
         await this.$store.dispatch('scriptModule/fetchScripts');
-        await this.$store.dispatch('stableScriptModule/fetchStableScript', this.selectedBank);
+        await this.$store.commit('stableScriptModule/updateStableScript', script);
     }
 }
 </script>
