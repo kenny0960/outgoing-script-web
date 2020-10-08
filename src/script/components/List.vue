@@ -37,7 +37,7 @@
                 </template>
                 <a-descriptions :column="1" class="script-detail">
                     <a-descriptions-item label="檔案大小"> {{ size(script) }} KB </a-descriptions-item>
-                    <a-descriptions-item v-if="script.note">
+                    <a-descriptions-item>
                         <a-tag>{{ script.note }}</a-tag>
                     </a-descriptions-item>
                 </a-descriptions>
