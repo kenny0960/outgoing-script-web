@@ -54,12 +54,12 @@ export default class extends Vue {
         this.$store.dispatch('scriptModule/fetchScripts');
     }
 
-    private handleWebClick({ target }: Event): void {
+    private async handleWebClick({ target }: Event): Promise<void> {
         this.$store.commit('tabModule/setSelectedWeb', (target as HTMLInputElement).value);
-        this.$store.commit('scriptModule/resetPagination');
-        this.$store.dispatch('stableScriptModule/fetchStableScripts');
         this.$store.commit('scriptModule/setScripts', undefined);
-        this.$store.dispatch('scriptModule/fetchScripts');
+        this.$store.commit('scriptModule/resetPagination');
+        await this.$store.dispatch('stableScriptModule/fetchStableScripts');
+        await this.$store.dispatch('scriptModule/fetchScripts');
     }
 }
 </script>
