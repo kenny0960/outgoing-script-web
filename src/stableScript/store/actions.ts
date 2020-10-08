@@ -7,6 +7,13 @@ import { ActionTree } from 'vuex';
 import { StableScriptState } from '@/stableScript/store/state';
 
 const actions: ActionTree<StableScriptState, RootState> = {
+    async fetchStableScripts({ rootState, commit, dispatch }): Promise<void> {
+        await commit('resetStableScripts');
+        for (const bank of rootState.settingsModule.banks) {
+            await dispatch('fetchStableScript', bank);
+        }
+    },
+
     async fetchStableScript({ rootState, commit }, bank: Bank): Promise<void> {
         try {
             const response: AxiosResponse = await axios({
@@ -17,10 +24,14 @@ const actions: ActionTree<StableScriptState, RootState> = {
                 },
             });
 
-            if (response.status === 200) {
-                const stableScript: Script = response.data;
-                commit('setStableScript', stableScript);
-            }
+            const stableScript: Script = {
+                revision: response.data.revision,
+                entryUrl: response.data.entry_url,
+                content: response.data.script_content,
+                isStabled: response.data.stabled,
+                note: response.data.note,
+            };
+            commit('appendStableScript', stableScript);
         } catch (error) {
             message.error(
                 `取得「${rootState.tabModule.selectedWeb.name} - ${bank.name}」穩定版本腳本失敗：${error.message}`

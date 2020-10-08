@@ -28,11 +28,9 @@ export default class extends Vue {
         this.$store.commit('scriptModule/resetState');
     }
 
-    public mounted(): void {
-        for (const bank of this.$store.state.settingsModule.banks) {
-            this.$store.dispatch('stableScriptModule/fetchStableScript', bank);
-        }
-        this.$store.dispatch('scriptModule/fetchScripts');
+    public async mounted(): Promise<void> {
+        await this.$store.dispatch('stableScriptModule/fetchStableScripts');
+        await this.$store.dispatch('scriptModule/fetchScripts');
     }
 
     get isScriptsLoading(): boolean {

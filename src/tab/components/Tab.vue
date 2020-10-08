@@ -57,9 +57,7 @@ export default class extends Vue {
     private handleWebClick({ target }: Event): void {
         this.$store.commit('tabModule/setSelectedWeb', (target as HTMLInputElement).value);
         this.$store.commit('scriptModule/resetPagination');
-        for (const bank of this.$store.state.settingsModule.banks) {
-            this.$store.dispatch('stableScriptModule/fetchStableScript', bank);
-        }
+        this.$store.dispatch('stableScriptModule/fetchStableScripts');
         this.$store.commit('scriptModule/setScripts', undefined);
         this.$store.dispatch('scriptModule/fetchScripts');
     }
