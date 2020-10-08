@@ -2,7 +2,7 @@
     <a-pagination
         class="pagination"
         show-size-changer
-        :pageSizeOptions="[4, 8, 12, 16]"
+        :pageSizeOptions="['4', '8', '12', '16']"
         :pageSize="pagination.pageSize"
         :current="pagination.current"
         :total="pagination.total"
