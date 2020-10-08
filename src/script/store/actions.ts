@@ -19,12 +19,6 @@ const actions: ActionTree<ScriptState, RootState> = {
                 },
             });
 
-            if (response.status === 200) {
-                message.success(
-                    `取得「${rootState.tabModule.selectedWeb.name} - ${rootState.tabModule.selectedBank.name}」腳本成功`
-                );
-            }
-
             const scripts: Script[] = [];
             for (const script of response.data) {
                 scripts.push({
