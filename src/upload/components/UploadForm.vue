@@ -63,6 +63,10 @@ export default class extends Vue {
         note: [{ required: true, message: '備註不能為空', trigger: 'blur' }],
     };
 
+    public beforeMount(): void {
+        this.$store.commit('uploadModule/resetState');
+    }
+
     get uploadState(): UploadState {
         return this.$store.state.uploadModule;
     }

@@ -11,13 +11,17 @@ export interface UploadState {
     isStabled: boolean;
 }
 
+export const defaultUploadState: UploadState = {
+    bank: undefined,
+    script: '',
+    note: getCurrentDatetimeString(),
+    webs: [DEVELOP_WEB],
+    isStabled: true,
+};
+
 const state = (): UploadState => {
     return {
-        bank: undefined,
-        script: '',
-        note: getCurrentDatetimeString(),
-        webs: [DEVELOP_WEB],
-        isStabled: true,
+        ...defaultUploadState,
     };
 };
 
