@@ -23,6 +23,11 @@ import Pagination from '@/script/components/Pagination.vue';
     },
 })
 export default class extends Vue {
+    public beforeMount(): void {
+        this.$store.commit('tabModule/resetState');
+        this.$store.commit('scriptModule/resetState');
+    }
+
     public mounted(): void {
         this.$store.dispatch('scriptModule/fetchScripts');
     }

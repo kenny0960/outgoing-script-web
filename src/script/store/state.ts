@@ -7,10 +7,14 @@ export interface ScriptState {
     pagination: Pagination;
 }
 
+export const defaultScriptState: ScriptState = {
+    scripts: undefined,
+    pagination: defaultPagination,
+};
+
 const state = (): ScriptState => {
     return {
-        scripts: undefined,
-        pagination: defaultPagination,
+        ...defaultScriptState,
     };
 };
 

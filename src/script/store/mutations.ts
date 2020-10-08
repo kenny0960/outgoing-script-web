@@ -1,8 +1,7 @@
-import defaultPagination from '@/script/instances/defaultPagination';
 import Pagination from '@/script/interfaces/Pagination';
 import Script from '@/script/interfaces/Script';
 import { MutationTree } from 'vuex';
-import { ScriptState } from '@/script/store/state';
+import { ScriptState, defaultScriptState } from '@/script/store/state';
 
 const mutations: MutationTree<ScriptState> = {
     setScripts(state: ScriptState, scripts: Script[]): void {
@@ -14,7 +13,16 @@ const mutations: MutationTree<ScriptState> = {
     },
 
     resetPagination(state: ScriptState): void {
-        state.pagination = defaultPagination;
+        state.pagination = defaultScriptState.pagination;
+    },
+
+    resetScripts(state: ScriptState): void {
+        state.scripts = defaultScriptState.scripts;
+    },
+
+    resetState(state: ScriptState): void {
+        state.pagination = defaultScriptState.pagination;
+        state.scripts = defaultScriptState.scripts;
     },
 };
 

@@ -8,10 +8,14 @@ export interface TabState {
     selectedBank: Bank;
 }
 
+export const defaultTabState: TabState = {
+    selectedWeb: DEVELOP_WEB,
+    selectedBank: ABOC,
+};
+
 const state = (): TabState => {
     return {
-        selectedWeb: DEVELOP_WEB,
-        selectedBank: ABOC,
+        ...defaultTabState,
     };
 };
 
