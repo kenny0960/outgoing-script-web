@@ -23,15 +23,3 @@ export const ESB_WEB: Web = {
     uri: 'https://api.assist2pay.com',
     token: 'robot:LQVFTS9jp2CyBHwje6qbmEthLdRTkTURSFzjTfmxbxARg3Bh8MghZu5xx7Ys76Rb',
 };
-
-export const DOUBLE_DRAGON_WEB: Web = {
-    name: 'DOUBLE_DRAGON',
-    uri: 'https://api.goldenflow.net',
-    token: 'robot:Jyh2zgQMmRWqWkKRTrp5u3S6BfhjUnZcmqKhRRcAP9aRdvzJsRFZ98XKYhzRvnnR',
-};
-
-export const CG_PAY_WEB: Web = {
-    name: 'CG_PAY',
-    uri: 'https://api.fast168pay.com',
-    token: 'robot:ZhhawrFNCRHmAWRHDyJ3nnst7cfVDxGvEAfZBLr5dX2rwHXY7hS5vU8tHddbmxgR',
-};
