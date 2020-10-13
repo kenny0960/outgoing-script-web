@@ -31,6 +31,7 @@ export default class extends Vue {}
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     font-size: 18px;
+    height: 100%;
 }
 
 #content {

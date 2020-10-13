@@ -44,6 +44,7 @@ export default class extends Vue {
 
 <style scoped>
 .pagination {
+    margin-top: 50px;
     text-align: center;
 }
 </style>
