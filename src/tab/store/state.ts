@@ -1,5 +1,5 @@
 import { ABOC } from '@/settings/consts/banks';
-import { DEVELOP_WEB } from '@/settings/consts/webs';
+import { LOCAL_WEB } from '@/settings/consts/webs';
 import Bank from '@/settings/interfaces/bank';
 import Web from '@/settings/interfaces/web';
 
@@ -9,7 +9,7 @@ export interface TabState {
 }
 
 export const defaultTabState: TabState = {
-    selectedWeb: DEVELOP_WEB,
+    selectedWeb: LOCAL_WEB,
     selectedBank: ABOC,
 };
 
